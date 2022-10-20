@@ -38,10 +38,12 @@ public class AulaVirtualEP3 {
         menu();
         
         // MOSTRAR - PARA MANTENIMIENTO
+        /*
         mostrarCursos();
         mostrarRamos();
         mostrarAlumnos();
         mostrarProfesores();
+        */
     }
     
     /*

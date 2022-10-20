@@ -45,14 +45,11 @@ public class Nota {
     
     // METODOS
     public void crearDatos(int idRamo) {
-        double notaIngresada;
+        double notaIngresada = 0;
         
+        System.out.println("Ingrese las notas: ");
         this.idRamo = idRamo;
-        
-        System.out.print("Nota: ");
-        notaIngresada = operaciones.validarNotaIngresada();
         while (notaIngresada == 0) {
-            System.out.println("Vuelva a ingresar la nota.");
             System.out.print("Nota: ");
             notaIngresada = operaciones.validarNotaIngresada();
         }

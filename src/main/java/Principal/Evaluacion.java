@@ -57,32 +57,26 @@ public class Evaluacion {
     
     // METODOS
     public void crearDatos() {
-        int numero;
-        String contenido;
-        Date fecha;
+        int numero = 0;
+        String contenido = null;
+        Date fecha = null;
         
-        System.out.print("Ingrese sobre que unidad sera la evaluacion (1-4): ");
-        numero = operaciones.validarUnidadIngresada();
+        System.out.println("Ingrese sobre que unidad sera la evaluacion (1-4): ");
         while (numero == 0) {
-            System.out.println("Vuelva a ingresar la unidad.");
-            System.out.print("Ingrese sobre que unidad sera la evaluacion (1-4): ");
+            System.out.print("Ingrese sobre que unidad sera la evaluacion: ");
             numero = operaciones.validarUnidadIngresada();
         }
         this.unidad = numero;
         
-        System.out.print("Ingrese el contenido a evaluar (puede separar temas con comas): ");
-        contenido = operaciones.validarContenidosIngresados();
+        System.out.println("Ingrese el contenido a evaluar (puede separar temas con comas): ");
         while (contenido == null) {
-            System.out.println("Vuelva a ingresar el contenido.");
-            System.out.print("Ingrese el contenido a evaluar (puede separar temas con comas): ");
+            System.out.print("Ingrese el contenido a evaluar: ");
             contenido = operaciones.validarContenidosIngresados();
         }
         this.contenidoEvaluar = contenido;
         
-        System.out.print("Ingrese fecha de evaluacion (DD/MM/YYYY): ");
-        fecha = operaciones.validarFechaIngresada();
+        System.out.println("Ingrese fecha de evaluacion (DD/MM/YYYY): ");
         while (fecha == null) {
-            System.out.println("Vuelva a ingresar la fecha.");
             System.out.print("Ingrese fecha de evaluacion (DD/MM/YYYY): ");
             fecha = operaciones.validarFechaIngresada();
         }

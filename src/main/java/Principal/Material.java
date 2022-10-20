@@ -47,25 +47,20 @@ public class Material {
     
     // METODOS
     public void crearDatos() {
-        String materiales;
-        Date fecha;
+        String materiales = null;
+        Date fecha = null;
         
         System.out.println("Ingrese material(es), " 
                 +   "puede usar comillas para ingresar multiples materiales: ");
-        materiales = operaciones.validarMaterialesIngresados();
         while (materiales == null) {
-            System.out.println("Vuelva a ingresar los materiales.");
-            System.out.print("Ingrese material(es), " 
-                +   "puede usar comillas para ingresar multiples materiales: ");
+            System.out.print("Ingrese materiales: ");
             materiales = operaciones.validarMaterialesIngresados();
         }
         this.nombre = materiales;
         
         System.out.println("Ingrese fecha de entrega (DD/MM/YYYY): ");
-        fecha = operaciones.validarFechaIngresada();
         while (fecha == null) {
-            System.out.println("Vuelva a ingresar la fecha.");
-            System.out.println("Ingrese fecha de entrega (DD/MM/YYYY): ");
+            System.out.print("Ingrese fecha de entrega: ");
             fecha = operaciones.validarFechaIngresada();
         }
         this.fechaEntrega = fecha;
