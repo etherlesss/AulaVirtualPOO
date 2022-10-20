@@ -1,0 +1,8 @@
+Naroa;Macias;11.783.189-1;naroa.macias@aulavirtual.cl
+Olivia;Jimeno;13.443.714-3;olivia.jimeno@aulavirtual.cl
+Yassin;Galvan;15.339.198-3;yassin.galvan@aulavirtual.cl
+Naiara;Leon;16.506.966-K;naiara.leon@aulavirtual.cl
+Demetrio;Rodenas;12.637.120-5;demetrio.rodenas@aulavirtual.cl
+Hector;Gaspar;16.208.524-6;hector.gaspar@aulavirtual.cl
+Leticia;Oliver;12.856.943-K;leticia.oliver@aulavirtual.cl
+Iratxe;Huerta;17.630.407-5;iratxe.huerta@aulavirtual.cl

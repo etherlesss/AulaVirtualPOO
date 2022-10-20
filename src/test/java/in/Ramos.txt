@@ -1,0 +1,8 @@
+1;Historia_y_Ciencias_Sociales
+2;Matematicas
+3;Lenguaje_y_Comunicacion
+4;Ciencias
+5;Ingles
+6;Educacion_Fisica
+7;Tecnologia
+8;Religion
