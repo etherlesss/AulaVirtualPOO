@@ -19,6 +19,7 @@ public class Operaciones {
         System.out.println(""
             + "(1) - Agregar elemento(s)\n"
             + "(2) - Mostrar por pantalla elementos de una lista \n"
+            + "(3) - Eliminar elemento(s) \n"
             + "(0) - Salir");
         
         System.out.print("Ingrese opcion: ");
@@ -51,6 +52,19 @@ public class Operaciones {
             + "(4) - Exportar avance de notas del alumno\n"
             + "(0) - Volver");
         
+        System.out.print("Ingrese opcion: ");
+        int opcion = entrada.nextInt();
+        
+        System.out.println("");
+        
+        return opcion;
+    }
+    
+    public int decisionMenuEliminar(){
+        System.out.println(""
+                + "(1) - Eliminar nota(s) de un ramo \n"
+                + "(2) - Eliminar material(es) de un ramo\n "
+                + "(0) - Volver");
         System.out.print("Ingrese opcion: ");
         int opcion = entrada.nextInt();
         

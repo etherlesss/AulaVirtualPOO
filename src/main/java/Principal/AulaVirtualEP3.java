@@ -212,6 +212,10 @@ public class AulaVirtualEP3 {
                 case 2:
                     subMenuCase2(indicesAlumno);
                     break;
+                case 3:
+                    //VERIFICAR SI LA SESIÓN ES DE ALUMNO O PROFESOR
+                    subMenuCase3(indicesAlumno);
+                    break;
                 default:
                     System.out.println(""
                             + "El numero ingresado no corresponde a ninguna opcion.\n"
@@ -230,6 +234,14 @@ public class AulaVirtualEP3 {
         System.out.print("Ingrese el rut del alumno (con puntos y guion): ");
         rutBuscado = Entrada.next();
 
+        /* volver a esto en algun momento
+        for(i = 0; i < alumnos.size(); i++) {
+           if(alumnos.get(i).getRut().equals(rutBuscado)){
+               return i;
+           } 
+        }
+        */
+        
         for (i = 0; i < cursos.size(); i++) {
             for (j = 0; j < cursos.get(i).getListaAlumnos().size(); j++) {
                 if (rutBuscado.equals(cursos.get(i).getListaAlumnos().get(j).getRut())) {
@@ -381,11 +393,100 @@ public class AulaVirtualEP3 {
                     break;
                     
                 default:
+                    System.out.println("El numero ingresado no corresponde a ninguna opcion.");
+                    System.out.println("Intente otra vez.");
                     break;
             }
             opcion = operaciones.decisionMenuMuestra();
         }
 
+    }
+    
+    public static void subMenuCase3(int[] indicesAlumno){
+        int opcion, idRamo;
+        
+        opcion = operaciones.decisionMenuEliminar();
+        while(opcion != 0){
+            switch(opcion){
+                case 1:
+                    //Elimminar nota             
+                    int opcionNota;
+                    operaciones.ramosDisponibles();
+                    
+                    
+                    System.out.print("Ingrese el ramo: ");
+                    idRamo = operaciones.validarIdIngresado();
+                    while(idRamo == 0){
+                        System.out.print("Ingrese un valor válido: ");
+                        idRamo = operaciones.validarIdIngresado();
+                    }
+                    for (int j = 0; j < ramos.size(); j++){
+                        if(ramos.get(j).getId() == idRamo){
+                            System.out.println("Notas de " + ramos.get(j).getNombre() + ": ");
+                            for (int k = 0; k < cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().size(); k++) {
+                                for (int i = 0; i < cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getNotas().size(); i++) {
+                                    if (cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getId() == ramos.get(j).getId()) {
+                                        System.out.println("[ "+ i +" ] " + cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getNotas().get(i).getNota());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    opcionNota = Entrada.nextInt();
+                    try{
+                    for (int j = 0; j < ramos.size(); j++){
+                        if(ramos.get(j).getId() == idRamo){
+                            for (int k = 0; k < cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().size(); k++) {
+                                if (cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getId() == ramos.get(j).getId()) {
+                                    cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getNotas().remove(opcionNota);
+                                    System.out.println("Operación realizada correctamente.");
+                                    j = ramos.size();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    }
+                    catch(Exception e){
+                        System.out.println("Hubo un error en la operación.");
+                    }
+                    
+                    break;
+                case 2:
+                    //Eliminar material
+                    int i, opcionMaterial;
+                    operaciones.ramosDisponibles();
+                    
+                    /* testeo
+                    System.out.println("Materiales por ramo: ");
+                    for (int j = 0; j < ramos.size(); j++) {
+                        System.out.println(ramos.get(j).getNombre());
+                        ramos.get(j).mostrarMateriales();
+                    }
+                    */
+                    
+                    System.out.print("Ingrese el ramo: ");
+                    i = Entrada.nextInt();
+ 
+                    ramos.get(i).mostrarMateriales();
+                    
+                    System.out.print("Ingrese material a eliminar: ");
+                    
+                    opcionMaterial = Entrada.nextInt();
+                    //hacer un try catch (crei que ese era el problema)
+                    for(int j = 0; j < ramos.get(i).getMateriales().size();j++){
+                        if(j == opcionMaterial-1){
+                            ramos.get(i).getMateriales().remove(j);
+                        }
+                    }
+                    break;
+                default:
+                    System.out.println("El numero ingresado no corresponde a ninguna opcion.");
+                    System.out.println("Intente otra vez.");
+                    break;
+            }
+            opcion = operaciones.decisionMenuEliminar();
+        }
     }
     
     /*
