@@ -3,6 +3,10 @@ package Principal;
 import Personas.Alumno;
 import Personas.Profesor;
 import Personas.Persona;
+import SesionClase.InicioControl;
+import SesionFrame.VerInicio;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,6 +37,19 @@ public class AulaVirtualEP3 {
         asignarAlumnosCursos();
         asignarProfesoresRamo();
         asignarRamosAlumnos();
+        
+        // CUADRO DE INICIO DE SESION
+        VerInicio ventana = new VerInicio(null,true);
+        new InicioControl(ventana);
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we){
+                System.exit(0);
+            }
+        });
+        ventana.pack();
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);
         
         // MENU
         menu();
