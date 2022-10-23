@@ -134,6 +134,7 @@ public class AulaVirtualEP3 {
                 alumno.setApellido(datos[2]);
                 alumno.setRut(datos[3]);
                 alumno.setMail(datos[4]);
+                alumno.setContrasenya(datos[5]);
 
                 alumnos.add(alumno);
             }
@@ -161,6 +162,7 @@ public class AulaVirtualEP3 {
                 profesor.setApellido(datos[1]);
                 profesor.setRut(datos[2]);
                 profesor.setMail(datos[3]);
+                profesor.setContrasenya(datos[4]);
 
                 profesores.add(profesor);
             }

@@ -10,8 +10,8 @@ public class Alumno extends Persona {
     private ArrayList<Ramo> asignaturas = new ArrayList<>();
 
     // CONSTRUCTORES
-    public Alumno(int idCurso, String nombre, String apellido, String rut, String mail) {
-        super(nombre, apellido, rut, mail);
+    public Alumno(int idCurso, String nombre, String apellido, String rut, String mail, String contrasenya) {
+        super(nombre, apellido, rut, mail, contrasenya);
         this.idCurso = idCurso;
     }
 

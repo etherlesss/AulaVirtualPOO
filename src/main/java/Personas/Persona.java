@@ -6,13 +6,15 @@ public class Persona {
     private String apellido;
     private String rut;
     private String mail;
+    private String contrasenya;
 
     // CONSTRUCTORES
-    public Persona(String nombre, String apellido, String rut, String mail) {
+    public Persona(String nombre, String apellido, String rut, String mail, String contrasenya) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.rut = rut;
         this.mail = mail;
+        this.contrasenya = contrasenya;
     }
     
     public Persona() {
@@ -36,6 +38,10 @@ public class Persona {
         return mail;
     }
 
+    public String getContrasenya() {
+        return contrasenya;
+    }
+
     // SETTERS
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -51,6 +57,10 @@ public class Persona {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+    
+    public void setContrasenya(String contrasenya) {
+        this.contrasenya = contrasenya;
     }
     
     // METODOS

@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 public class InicioControl implements ActionListener{
-    // ATRIBUTS
+    // ATRIBUTOS
     private VerInicio ventana;
     //CONSTRUCTOR
     public InicioControl(VerInicio vision){
@@ -27,29 +27,31 @@ public class InicioControl implements ActionListener{
             String Contrasenya = ventana.getContrasenya().getText();
             // Verificaciones de inicio de sesion
             if(Usuario.isEmpty() && Contrasenya.isEmpty()){
-                mostrarMensaje("Ingresa tu Rut y conraseña");
+                mostrarMensaje("Ingresa su RUT y contraseña");
             }
             else if(Usuario.isEmpty()){
-                mostrarMensaje("Ingrese su Rut");
+                mostrarMensaje("Ingrese su Rut (con puntos y guion)");
             }
             else if(Contrasenya.isEmpty()){
                 mostrarMensaje("Ingrese una contraseña");
             }
-            else if(buscarPermisoProfesor(Principal.AulaVirtualEP3.profesores, Usuario) == true && Contrasenya.equals("contraseña")){
+            else if(buscarPermisoProfesor(AulaVirtualEP3.profesores, Usuario, Contrasenya) == true){
                 mostrarMensaje("Bienvenido "
-                        + obtenerUsuarioProfesor(Principal.AulaVirtualEP3.profesores, Usuario).getNombre() + " "
-                        + obtenerUsuarioProfesor(Principal.AulaVirtualEP3.profesores, Usuario).getApellido());
+                        + obtenerUsuarioProfesor(AulaVirtualEP3.profesores, Usuario).getNombre() + " "
+                        + obtenerUsuarioProfesor(AulaVirtualEP3.profesores, Usuario).getApellido());
                 
                 /* LLAMAR MENU CON MAYORES PERMISOS: PARA AGREGAR NOTAS, MODIFICAR, ETC... */
                 
                 ventana.setVisible(false);
             }
-            else if(buscarPermisoAlumno(Principal.AulaVirtualEP3.alumnos, Usuario) == true && Contrasenya.equals("contraseña")){
+            else if(buscarPermisoAlumno(AulaVirtualEP3.alumnos, Usuario, Contrasenya) == true){
                 mostrarMensaje("Bienvenido "
-                        + obtenerUsuarioAlumno(Principal.AulaVirtualEP3.alumnos, Usuario).getNombre() + " "
-                        + obtenerUsuarioAlumno(Principal.AulaVirtualEP3.alumnos, Usuario).getApellido());
+                        + obtenerUsuarioAlumno(AulaVirtualEP3.alumnos, Usuario).getNombre() + " "
+                        + obtenerUsuarioAlumno(AulaVirtualEP3.alumnos, Usuario).getApellido());
                 
-                /* LLAMAR MENU CON BAJOS PERMISOS: MOSTRAR, EXPORTAR, ETC... */
+                /* LLAMAR MENU CON BAJOS PERMISOS: MOSTRAR, EXPORTAR, ETC... 
+                   CABE DESTACAR QUE NO ES NECESARIO VOLVER A PREGUNTAR POR EL RUT
+                   DEL ALUMNO, YA QUE LOS DATOS LOS OBTIENE DE ESTE INICIO DE SESION. */
                 
                 ventana.setVisible(false);
             }
@@ -71,18 +73,18 @@ public class InicioControl implements ActionListener{
         JOptionPane.showMessageDialog(ventana, msg);
     }
     // Vemos si los datos ingresados corresponden a un alumno
-    private boolean buscarPermisoAlumno(ArrayList<Alumno> alumnos, String Usuario){
+    private boolean buscarPermisoAlumno(ArrayList<Alumno> alumnos, String Usuario, String Contrasenya){
         for (int i = 0; i < alumnos.size(); i++) {
-            if (alumnos.get(i).getRut().equals(Usuario)) {
+            if (alumnos.get(i).getRut().equals(Usuario) && alumnos.get(i).getContrasenya().equals(Contrasenya)) {
                 return true;
             }
         }
         return false;
     }
     // Vemos si los datos ingresados corresponden a un profesor
-    private boolean buscarPermisoProfesor(ArrayList<Profesor> profesores, String Usuario){
+    private boolean buscarPermisoProfesor(ArrayList<Profesor> profesores, String Usuario, String Contrasenya){
         for (int i = 0; i < profesores.size(); i++) {
-            if (profesores.get(i).getRut().equals(Usuario)) {
+            if (profesores.get(i).getRut().equals(Usuario) && profesores.get(i).getContrasenya().equals(Contrasenya)) {
                 return true;
             }
         }

@@ -7,8 +7,8 @@ public class Profesor extends Persona {
     private Ramo ramo;
     
     // CONSTRUCTORES
-    public Profesor(Ramo ramo, String nombre, String apellido, String rut, String mail) {
-        super(nombre, apellido, rut, mail);
+    public Profesor(Ramo ramo, String nombre, String apellido, String rut, String mail, String contrasenya) {
+        super(nombre, apellido, rut, mail, contrasenya);
         this.ramo = ramo;
     }
 
