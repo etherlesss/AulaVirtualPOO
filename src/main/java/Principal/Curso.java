@@ -74,7 +74,7 @@ public class Curso {
             if (this.listaAlumnos.get(i).getRut().equals(rut)) {
                 System.out.println(""
                         + "Nombre: " + this.listaAlumnos.get(i).getNombre() + " " + this.listaAlumnos.get(i).getApellido() + "\n"
-                        + "Rut: " + this.listaAlumnos.get(i).getRut()
+                        + "Rut: " + this.listaAlumnos.get(i).getRut() + "\n"
                         + "Curso: " + this.nivel + this.letra + "\n"
                         + "Mail: " + this.listaAlumnos.get(i).getMail());
                 return;
@@ -85,7 +85,7 @@ public class Curso {
     public void printDatosAlumno(int id) {
         System.out.println(""
                 + "Nombre: " + this.listaAlumnos.get(id).getNombre() + " " + this.listaAlumnos.get(id).getApellido() + "\n"
-                + "Rut: " + this.listaAlumnos.get(id).getRut()
+                + "Rut: " + this.listaAlumnos.get(id).getRut() + "\n"
                 + "Curso: " + this.nivel + this.letra + "\n"
                 + "Mail: " + this.listaAlumnos.get(id).getMail());
 

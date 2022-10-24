@@ -27,16 +27,16 @@ public class InicioControl implements ActionListener{
             String Contrasenya = ventana.getContrasenya().getText();
             // Verificaciones de inicio de sesion
             if(Usuario.isEmpty() && Contrasenya.isEmpty()){
-                mostrarMensaje("Ingresa su RUT y contraseña");
+                mostrarMensajeError("Debe ingresar su RUT y contraseña");
             }
             else if(Usuario.isEmpty()){
-                mostrarMensaje("Ingrese su Rut (con puntos y guion)");
+                mostrarMensajeError("Debe ingresar su RUT (con puntos y guion)");
             }
             else if(Contrasenya.isEmpty()){
-                mostrarMensaje("Ingrese una contraseña");
+                mostrarMensajeError("Debe ingresar una contraseña");
             }
             else if(buscarPermisoProfesor(AulaVirtualEP3.profesores, Usuario, Contrasenya) == true){
-                mostrarMensaje("Bienvenido "
+                mostrarMensaje("Bienvenid@, "
                         + obtenerUsuarioProfesor(AulaVirtualEP3.profesores, Usuario).getNombre() + " "
                         + obtenerUsuarioProfesor(AulaVirtualEP3.profesores, Usuario).getApellido());
                 
@@ -46,7 +46,7 @@ public class InicioControl implements ActionListener{
                 AulaVirtualEP3.menu(1, Usuario);
             }
             else if(buscarPermisoAlumno(AulaVirtualEP3.alumnos, Usuario, Contrasenya) == true){
-                mostrarMensaje("Bienvenido "
+                mostrarMensaje("Bienvenido@, "
                         + obtenerUsuarioAlumno(AulaVirtualEP3.alumnos, Usuario).getNombre() + " "
                         + obtenerUsuarioAlumno(AulaVirtualEP3.alumnos, Usuario).getApellido());
                 
@@ -58,7 +58,7 @@ public class InicioControl implements ActionListener{
                 AulaVirtualEP3.menu(0, Usuario);
             }
             else{
-                mostrarMensaje("Datos ingresasdos son incorrectos");
+                mostrarMensajeError("Datos ingresasdos son incorrectos!");
             }
         }
         if(e.getSource() == ventana.getBtnSalir()){
@@ -73,6 +73,10 @@ public class InicioControl implements ActionListener{
     private void mostrarMensaje(String msg){
         Toolkit.getDefaultToolkit().beep();
         JOptionPane.showMessageDialog(ventana, msg);
+    }
+    private void mostrarMensajeError(String msg){
+        Toolkit.getDefaultToolkit().beep();
+        JOptionPane.showMessageDialog(ventana, msg, "ERROR", JOptionPane.ERROR_MESSAGE);
     }
     // Vemos si los datos ingresados corresponden a un alumno
     private boolean buscarPermisoAlumno(ArrayList<Alumno> alumnos, String Usuario, String Contrasenya){

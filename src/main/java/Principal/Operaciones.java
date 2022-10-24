@@ -86,17 +86,17 @@ public class Operaciones {
     
     public int decisionMenuSesion(int Admin){
         if(Admin == 0){
-        System.out.print(""
+        System.out.println(""
             + "(1) - Mostrar datos alumno sesión\n"
             + "(2) - Buscar alumno por rut");
         }
         else{
-            System.out.print(""
+            System.out.println(""
             + "(1) - Mostrar datos sesión\n"
             + "(2) - Buscar alumno por rut");
         }
         
-        System.out.println("Ingrese opción: ");
+        System.out.print("Ingrese opción: ");
         int opcion = entrada.nextInt();
         
         System.out.println("");

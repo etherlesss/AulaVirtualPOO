@@ -2,7 +2,6 @@ package Principal;
 
 import Personas.Alumno;
 import Personas.Profesor;
-import Personas.Persona;
 import SesionClase.InicioControl;
 import SesionFrame.VerInicio;
 import java.awt.event.WindowAdapter;
