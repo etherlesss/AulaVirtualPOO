@@ -84,6 +84,18 @@ public class Operaciones {
         return opcion;
     }
     
+    public int decisionMenuUpdate(){
+        System.out.println(""
+                + "(1) - Cambiar nota de un ramo \n"
+                + "(0) - Volver");
+        System.out.print("Ingrese opcion: ");
+        int opcion = entrada.nextInt();
+        
+        System.out.println("");
+        
+        return opcion;
+    }
+    
     public int decisionMenuSesion(int Admin){
         if(Admin == 0){
         System.out.println(""
