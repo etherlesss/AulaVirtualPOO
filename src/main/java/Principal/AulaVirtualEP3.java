@@ -212,6 +212,14 @@ public class AulaVirtualEP3 {
             indicesAlumno = getIndiceAlumno(rut);
 
         }
+        else{
+            
+            for (int i = 0; i < profesores.size(); i++) {
+                if(profesores.get(i).getRut().equals(rut)){
+                    indicesAlumno[0] = i;
+                }
+            }
+        }
         opcion = operaciones.decisionMenuPrincipal(Admin);
         if(Admin == 1){
             while (opcion != 0) {
@@ -382,7 +390,7 @@ public class AulaVirtualEP3 {
                         }
                         
                         if (opcion == 1) {
-                            cursos.get(indicesAlumno[0]).printDatosAlumno(indicesAlumno[1]);
+                            profesores.get(indicesAlumno[0]).mostrarDatos(indicesAlumno[0]);
                         }
                         
                         if (opcion == 2) {
@@ -532,19 +540,13 @@ public class AulaVirtualEP3 {
                     int i, opcionMaterial;
                     operaciones.ramosDisponibles();
                     
-                    /* testeo
-                    System.out.println("Materiales por ramo: ");
-                    for (int j = 0; j < ramos.size(); j++) {
-                        System.out.println(ramos.get(j).getNombre());
-                        ramos.get(j).mostrarMateriales();
-                    }
-                    */
-                    
                     System.out.print("Ingrese el ramo: ");
                     i = Entrada.nextInt();
- 
-                    ramos.get(i).mostrarMateriales();
                     
+                    for (int j = 0; j < ramos.get(i).getMateriales().size(); j++) {
+                        ramos.get(i).getMateriales().get(j).mostrarDatos(j);
+                    }
+
                     System.out.print("Ingrese material a eliminar: ");
                     
                     opcionMaterial = Entrada.nextInt();

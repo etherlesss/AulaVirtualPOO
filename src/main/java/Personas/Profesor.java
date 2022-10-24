@@ -32,11 +32,11 @@ public class Profesor extends Persona {
     
     // METODOS
     public void mostrarDatos(int i) {
-        System.out.println("Profesor " + (i + 1) + ": "
+        System.out.println("Profesor " + (i + 1) + ": \n"
                 + this.getNombre() + " "
-                + this.getApellido() + " "
-                + this.getRut() + " "
-                + this.getMail() + " "
+                + this.getApellido() + " \n"
+                + this.getRut() + " \n"
+                + this.getMail() + " \n"
                 + "Ramo que imparte: " + this.ramo.getNombre());
     }
 }
