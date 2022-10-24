@@ -14,14 +14,20 @@ public class Operaciones {
         
     }
     
-    // Metodos
-    public int decisionMenuPrincipal(){
+    // Metodos 
+    public int decisionMenuPrincipal(int flag){
+        if(flag == 1){
         System.out.println(""
             + "(1) - Agregar elemento(s)\n"
             + "(2) - Mostrar por pantalla elementos de una lista \n"
             + "(3) - Eliminar elemento(s) \n"
             + "(0) - Salir");
-        
+        }
+        else{
+            System.out.println(""
+            + "(1) - Mostrar por pantalla elementos de una lista \n"
+            + "(0) - Salir");
+        }
         System.out.print("Ingrese opcion: ");
         int opcion = entrada.nextInt();
         
@@ -44,14 +50,19 @@ public class Operaciones {
         return opcion;
     }
     
-    public int decisionMenuMuestra(){
+    public int decisionMenuMuestra(int flag){
+        if(flag == 1){
         System.out.println(""
+            + "(1) - Imprimir datos de un alumno\n"
+            + "(0) - Volver");
+        }
+        else{
+            System.out.println(""
             + "(1) - Imprimir avance de notas del alumno\n"
             + "(2) - Imprimir materiales pedidos por ramo\n"
-            + "(3) - Imprimir datos de un alumno\n"
-            + "(4) - Exportar avance de notas del alumno\n"
+            + "(3) - Exportar avance de notas del alumno\n"
             + "(0) - Volver");
-        
+        }
         System.out.print("Ingrese opcion: ");
         int opcion = entrada.nextInt();
         
@@ -73,12 +84,19 @@ public class Operaciones {
         return opcion;
     }
     
-    public int decisionMenuSesion(){
+    public int decisionMenuSesion(int Admin){
+        if(Admin == 0){
         System.out.print(""
-            + "(1) - Mostrar datos alumno sesion\n"
+            + "(1) - Mostrar datos alumno sesión\n"
             + "(2) - Buscar alumno por rut");
+        }
+        else{
+            System.out.print(""
+            + "(1) - Mostrar datos sesión\n"
+            + "(2) - Buscar alumno por rut");
+        }
         
-        System.out.println("Ingrese opcion: ");
+        System.out.println("Ingrese opción: ");
         int opcion = entrada.nextInt();
         
         System.out.println("");
@@ -107,7 +125,16 @@ public class Operaciones {
         }
         return 0;
     }
-    
+    public int validarNumeroIngresado(){
+        String cadena = entrada.next();
+        if(cadena.matches("[1-9]*")){
+            return Integer.valueOf(cadena);
+        }
+        else{
+            System.out.println("Dato inválido.\n");
+        }
+        return 0;
+    }
     public int validarIdIngresado(){
         String cadena = entrada.next();
         if (cadena.matches("[1-8]*")) {

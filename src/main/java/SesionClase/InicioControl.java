@@ -43,6 +43,7 @@ public class InicioControl implements ActionListener{
                 /* LLAMAR MENU CON MAYORES PERMISOS: PARA AGREGAR NOTAS, MODIFICAR, ETC... */
                 
                 ventana.setVisible(false);
+                AulaVirtualEP3.menu(1, Usuario);
             }
             else if(buscarPermisoAlumno(AulaVirtualEP3.alumnos, Usuario, Contrasenya) == true){
                 mostrarMensaje("Bienvenido "
@@ -54,6 +55,7 @@ public class InicioControl implements ActionListener{
                    DEL ALUMNO, YA QUE LOS DATOS LOS OBTIENE DE ESTE INICIO DE SESION. */
                 
                 ventana.setVisible(false);
+                AulaVirtualEP3.menu(0, Usuario);
             }
             else{
                 mostrarMensaje("Datos ingresasdos son incorrectos");
