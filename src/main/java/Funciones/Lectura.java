@@ -13,6 +13,14 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Lectura {
+    public static void leerDatos() throws FileNotFoundException {
+        insertarCursosArchivo();
+        insertarRamosArchivo();
+        insertarAlumnosArchivo();
+        insertarProfesoresArchivo();
+    }
+    
+    
     public static void insertarCursosArchivo() throws FileNotFoundException {
         String file = "src/test/java/in/Cursos.txt";
 

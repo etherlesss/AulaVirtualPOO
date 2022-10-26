@@ -6,6 +6,13 @@ import static Principal.AulaVirtualEP3.profesores;
 import static Principal.AulaVirtualEP3.ramos;
 
 public class Asignacion {
+    public static void asignarDatos() {
+        asignarProfesoresJefes();
+        asignarAlumnosCursos();
+        asignarProfesoresRamo();
+        asignarRamosAlumnos();
+    }
+    
     public static void asignarProfesoresJefes() {
         for (int i = 0; i < cursos.size(); i++) {
             cursos.get(i).setProfesorJefe(profesores.get(i));

@@ -25,16 +25,10 @@ public class AulaVirtualEP3 {
     
     public static void main(String[] args) throws FileNotFoundException {
         // LEER
-        Lectura.insertarCursosArchivo();
-        Lectura.insertarRamosArchivo();
-        Lectura.insertarAlumnosArchivo();
-        Lectura.insertarProfesoresArchivo();
+        Lectura.leerDatos();
         
         // ASIGNAR
-        Asignacion.asignarProfesoresJefes();
-        Asignacion.asignarAlumnosCursos();
-        Asignacion.asignarProfesoresRamo();
-        Asignacion.asignarRamosAlumnos();
+        Asignacion.asignarDatos();
         
         // MOSTRAR - PARA MANTENIMIENTO
         /*
@@ -273,6 +267,7 @@ public class AulaVirtualEP3 {
                                                     }
                                                 }
                                             }
+                                            System.out.println("");
                                         }
                                         if (contador != 0) {
                                         System.out.println("El promedio de " + ramos.get(j).getNombre()
@@ -307,6 +302,7 @@ public class AulaVirtualEP3 {
                                         contador++;
                                     }
                                 }
+                                System.out.println("");
                             }
                             
                             if (contador != 0) {
