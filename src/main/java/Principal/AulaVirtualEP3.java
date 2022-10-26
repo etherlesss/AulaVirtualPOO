@@ -1,13 +1,12 @@
 package Principal;
 
-import Personas.Alumno;
-import Personas.Profesor;
+import Personas.*;
+import Funciones.*;
 import SesionClase.InicioControl;
 import SesionFrame.VerInicio;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -26,16 +25,24 @@ public class AulaVirtualEP3 {
     
     public static void main(String[] args) throws FileNotFoundException {
         // LEER
-        insertarCursosArchivo();
-        insertarRamosArchivo();
-        insertarAlumnosArchivo();
-        insertarProfesoresArchivo();
+        Lectura.insertarCursosArchivo();
+        Lectura.insertarRamosArchivo();
+        Lectura.insertarAlumnosArchivo();
+        Lectura.insertarProfesoresArchivo();
         
         // ASIGNAR
-        asignarProfesoresJefes();
-        asignarAlumnosCursos();
-        asignarProfesoresRamo();
-        asignarRamosAlumnos();
+        Asignacion.asignarProfesoresJefes();
+        Asignacion.asignarAlumnosCursos();
+        Asignacion.asignarProfesoresRamo();
+        Asignacion.asignarRamosAlumnos();
+        
+        // MOSTRAR - PARA MANTENIMIENTO
+        /*
+        mostrarCursos();
+        mostrarRamos();
+        mostrarAlumnos();
+        mostrarProfesores();
+        */
         
         // CUADRO DE INICIO DE SESION
         VerInicio ventana = new VerInicio(null,true);
@@ -49,157 +56,8 @@ public class AulaVirtualEP3 {
         ventana.pack();
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
-        
-        // MOSTRAR - PARA MANTENIMIENTO
-        /*
-        mostrarCursos();
-        mostrarRamos();
-        mostrarAlumnos();
-        mostrarProfesores();
-        */
     }
-    
-    /*
-        LLENADO DE DATOS
-    */
-    public static void insertarCursosArchivo() throws FileNotFoundException {
-        String file = "src/test/java/in/Cursos.txt";
-
-        try {
-            File archivo = new File(file);
-            System.out.println("Ruta: " + archivo.getAbsolutePath());
-
-            Scanner entrada = new Scanner(archivo);
-
-            while (entrada.hasNext()) {
-                String[] datos = entrada.next().split(";");
-                Curso curso = new Curso();
-
-                curso.setNivel(Integer.parseInt(datos[0]));
-                curso.setLetra(datos[1].charAt(0));
-
-                cursos.add(curso);
-            }
-
-            entrada.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public static void insertarRamosArchivo() throws FileNotFoundException {
-        String file = "src/test/java/in/Ramos.txt";
-
-        try {
-            File archivo = new File(file);
-            System.out.println("Ruta: " + archivo.getAbsolutePath());
-
-            Scanner entrada = new Scanner(archivo);
-
-            while (entrada.hasNext()) {
-                String[] datos = entrada.next().split(";");
-                Ramo ramo = new Ramo();
-
-                ramo.setId(Integer.parseInt(datos[0]));
-                ramo.setNombre(datos[1].replace("_", " "));
-
-                ramos.add(ramo);
-            }
-
-            entrada.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public static void insertarAlumnosArchivo() throws FileNotFoundException {
-        String file = "src/test/java/in/Alumnos.txt";
-
-        try {
-            File archivo = new File(file);
-            System.out.println("Ruta: " + archivo.getAbsolutePath());
-
-            Scanner entrada = new Scanner(archivo);
-
-            while (entrada.hasNext()) {
-                String[] datos = entrada.next().split(";");
-                Alumno alumno = new Alumno();
-
-                alumno.setIdCurso(Integer.parseInt(datos[0]));
-                alumno.setNombre(datos[1]);
-                alumno.setApellido(datos[2]);
-                alumno.setRut(datos[3]);
-                alumno.setMail(datos[4]);
-                alumno.setContrasenya(datos[5]);
-
-                alumnos.add(alumno);
-            }
-
-            entrada.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public static void insertarProfesoresArchivo() throws FileNotFoundException {
-        String file = "src/test/java/in/Profesores.txt";
-
-        try {
-            File archivo = new File(file);
-            System.out.println("Ruta: " + archivo.getAbsolutePath());
-
-            Scanner entrada = new Scanner(archivo);
-
-            while (entrada.hasNext()) {
-                String[] datos = entrada.next().split(";");
-                Profesor profesor = new Profesor();
-
-                profesor.setNombre(datos[0]);
-                profesor.setApellido(datos[1]);
-                profesor.setRut(datos[2]);
-                profesor.setMail(datos[3]);
-                profesor.setContrasenya(datos[4]);
-
-                profesores.add(profesor);
-            }
-
-            entrada.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    /*
-        ASIGNACIONES
-    */
-    public static void asignarProfesoresJefes() {
-        for (int i = 0; i < cursos.size(); i++) {
-            cursos.get(i).setProfesorJefe(profesores.get(i));
-        }
-    }
-    
-    public static void asignarAlumnosCursos(){
-        for (int i = 0; i < cursos.size(); i++) {
-            for (int j = 0; j < alumnos.size(); j++) {
-                if (cursos.get(i).getNivel() == alumnos.get(j).getIdCurso()) {
-                    cursos.get(i).getListaAlumnos().add(alumnos.get(j));
-                }
-            }
-        }
-    }
-    
-    public static void asignarProfesoresRamo() {
-        for (int i = 0; i < ramos.size(); i++) {
-            profesores.get(i).setRamo(ramos.get(i));
-        }
-    }
-    
-    public static void asignarRamosAlumnos() {
-        for (int i = 0; i < alumnos.size(); i++) {
-            alumnos.get(i).setAsignaturas(ramos);
-        }
-    }
-    
+      
     /*
         MENU
     */

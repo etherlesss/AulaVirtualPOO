@@ -1,5 +1,7 @@
 package Principal;
 
+import Funciones.Operaciones;
+
 public class Nota {
     // ATRIBUTOS
     private int idRamo;
