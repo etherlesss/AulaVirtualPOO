@@ -220,8 +220,9 @@ public class AulaVirtualEP3 {
                 }
             }
         }
-        opcion = operaciones.decisionMenuPrincipal(Admin);
+        
         if(Admin == 1){
+            opcion = operaciones.decisionMenuPrincipal(Admin);
             while (opcion != 0) {
                 switch (opcion) {
                     //Agregar Elemento(s)
@@ -249,6 +250,7 @@ public class AulaVirtualEP3 {
             }
         }
         else{
+            opcion = operaciones.decisionMenuPrincipal(Admin);
             while (opcion != 0) {
                 switch (opcion) {
                     //Mostrar Elemento(s)
@@ -269,8 +271,6 @@ public class AulaVirtualEP3 {
     public static int[] getIndiceAlumno(String rutBuscado) {
         int[] indicesAlumno = new int[2];
         int i, j;
-        
-        System.out.print("Ingrese el rut del alumno (con puntos y guion): ");
         
         for (i = 0; i < cursos.size(); i++) {
             for (j = 0; j < cursos.get(i).getListaAlumnos().size(); j++) {

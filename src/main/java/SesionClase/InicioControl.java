@@ -44,6 +44,7 @@ public class InicioControl implements ActionListener{
                 
                 ventana.setVisible(false);
                 AulaVirtualEP3.menu(1, Usuario);
+                System.exit(0);
             }
             else if(buscarPermisoAlumno(AulaVirtualEP3.alumnos, Usuario, Contrasenya) == true){
                 mostrarMensaje("Bienvenido@, "
@@ -56,6 +57,7 @@ public class InicioControl implements ActionListener{
                 
                 ventana.setVisible(false);
                 AulaVirtualEP3.menu(0, Usuario);
+                System.exit(0);
             }
             else{
                 mostrarMensajeError("Datos ingresasdos son incorrectos!");
