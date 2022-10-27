@@ -423,7 +423,7 @@ public class AulaVirtualEP3 {
             opcion = operaciones.decisionMenuEliminar();
         }
     }
-    
+    // MENU DE REEMPLAZAR
     public static void subMenuCase4(){
         int opcion, idRamo, flag = 1;
         int[] indicesAlumno = new int[2];
@@ -462,6 +462,7 @@ public class AulaVirtualEP3 {
                                         if(ramos.get(j).getId() == idRamo){
                                             for (int k = 0; k < cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().size(); k++) {
                                                 if (cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getId() == ramos.get(j).getId()) {
+                                                    System.out.println("Ingrese nueva nota: ");
                                                     nuevaNota = operaciones.validarNotaIngresada();
                                                     cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getNotas().get(opcionNota).setNota(nuevaNota);
                                                     System.out.println("Operación realizada correctamente.");
