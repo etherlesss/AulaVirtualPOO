@@ -21,7 +21,7 @@ public class Operaciones {
             + "(1) - Agregar elemento(s)\n"
             + "(2) - Mostrar por pantalla elementos de una lista \n"
             + "(3) - Eliminar elemento(s) \n"
-            + "(4) - Modificar elemento(s \n)"
+            + "(4) - Modificar elemento(s) \n"
             + "(0) - Salir");
         }
         else{
