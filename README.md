@@ -3,7 +3,7 @@
 Todos los RUTs, contraseñas e individuos dentro de este programa fueron generados mediante un generador programado por uno de nuestros integrantes y no pertenecen a ninguna persona en específico y tampoco fueron usados de forma maliciosa.
 </details>
 
-### Descripcion
+### Descripción
 Este proyecto consiste de un aula virtual programado en Java, el cual dispone de una variedad de operaciones para realizar, dependiendo del tipo de usuario que esté haciendo uso de este, sea alumno o profesor.
 
 ### Uso
