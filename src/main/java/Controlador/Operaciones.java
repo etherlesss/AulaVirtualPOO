@@ -1,4 +1,4 @@
-package Funciones;
+package Controlador;
 
 import java.util.Scanner;
 import java.util.Date;

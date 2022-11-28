@@ -1,8 +1,8 @@
 package Principal;
 
-import Personas.*;
-import Funciones.*;
-import Funciones.Operaciones;
+import Controlador.*;
+import Modelo.*;
+import Controlador.Operaciones;
 import SesionClase.InicioControl;
 import SesionFrame.VerInicio;
 import java.awt.event.WindowAdapter;

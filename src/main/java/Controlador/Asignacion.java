@@ -1,4 +1,4 @@
-package Funciones;
+package Controlador;
 
 import static Principal.AulaVirtualEP3.alumnos;
 import static Principal.AulaVirtualEP3.cursos;

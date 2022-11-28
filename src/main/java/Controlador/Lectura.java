@@ -1,13 +1,13 @@
-package Funciones;
+package Controlador;
 
-import Personas.Alumno;
-import Personas.Profesor;
+import Modelo.Alumno;
+import Modelo.Profesor;
 import static Principal.AulaVirtualEP3.alumnos;
 import static Principal.AulaVirtualEP3.cursos;
 import static Principal.AulaVirtualEP3.profesores;
 import static Principal.AulaVirtualEP3.ramos;
-import Principal.Curso;
-import Principal.Ramo;
+import Modelo.Curso;
+import Modelo.Ramo;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

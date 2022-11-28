@@ -2,8 +2,7 @@ package SesionClase;
 
 import SesionFrame.VerInicio;
 import Principal.AulaVirtualEP3;
-import Personas.Alumno;
-import Personas.Profesor;
+import Modelo.*;
 import java.util.ArrayList;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
