@@ -41,6 +41,7 @@ public class Alumno extends Persona {
     }
     
     // METODOS
+    @Override
     public void mostrarDatos(int i) {
         System.out.println("Alumno " + (i + 1) + ": "
                 + this.getNombre() + " "

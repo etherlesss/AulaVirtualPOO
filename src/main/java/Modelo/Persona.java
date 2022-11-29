@@ -1,6 +1,6 @@
 package Modelo;
 
-public class Persona {
+public abstract class Persona {
     // ATRIBUTOS
     private String nombre;
     private String apellido;
@@ -64,12 +64,5 @@ public class Persona {
     }
     
     // METODOS
-    // SOBREESCRITURA DE METODOS
-    public void mostrarDatos(int i) {
-        System.out.println("Persona " + (i + 1) + ": \n"
-                + this.getNombre() + " "
-                + this.getApellido() + " \n"
-                + this.getRut() + " \n"
-                + this.getMail() + " \n");
-    }
+    public abstract void mostrarDatos(int i);
 }
