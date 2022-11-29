@@ -55,6 +55,7 @@ public class Operaciones {
         if(flag == 1){
         System.out.println(""
             + "(1) - Imprimir datos\n"
+            + "(2) - Mostrar alumnos con promedios mas bajos y altos por curso\n"
             + "(0) - Volver");
         }
         else{

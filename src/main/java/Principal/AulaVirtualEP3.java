@@ -283,7 +283,43 @@ public class AulaVirtualEP3 {
                                 }
                             }
                         }
-                        break;     
+                        break;    
+                    case 2:
+                        double mayor = 0, menor = 0 , actual;
+                        ArrayList <Double> listaMenores = new ArrayList();
+                        ArrayList<Alumno> listaAlumnosMenores = new ArrayList(8);
+                        ArrayList<Double> listaMayores = new ArrayList();
+                        ArrayList<Alumno> listaAlumnosMayores = new ArrayList(8);
+                        
+                        System.out.println("");
+                        for (int i = 0; i < 8; i++) {
+                            for (int j = 0; j < alumnos.size(); j++) {
+                                if(alumnos.get(i).getIdCurso() == i+1){
+                                    actual = promedioAlumno(alumnos.get(j).getAsignaturas());
+                                    if(j == 0){
+                                        menor = actual;
+                                        mayor = actual;
+                                    }
+                                    if(actual < menor){
+                                        menor = actual;
+                                        listaAlumnosMenores.set(i,alumnos.get(j));
+                                    }
+                                    if(actual > mayor){
+                                        mayor = actual;
+                                        listaAlumnosMayores.set(i, alumnos.get(i));
+                                    
+                                    }
+                                }
+                            }
+                            listaMenores.add(menor);
+                            listaMayores.add(mayor);
+                        }
+                        for (int i = 0; i < 8; i++) {
+                            System.out.println(ramos.get(i).getNombre());
+                            System.out.println("Promedio mas bajo:" + listaMenores.get(i) +" "+listaAlumnosMenores.get(i).getRut());
+                            System.out.println("Promedio mas alto:" + listaMayores.get(i) +" "+listaAlumnosMayores.get(i).getRut());
+                        }
+                        break;    
                 }
                 opcion = operaciones.decisionMenuMuestra(Admin);
             }
@@ -329,7 +365,6 @@ public class AulaVirtualEP3 {
                         exportarNotas(indicesAlumno);
                         System.out.println("\nAVANCE DE NOTAS GUARDADOS EXITOSAMENTE EN: src/test/java/out/InformeNotas.txt\n");
                         break;
-                        
                     default:
                         System.out.println("El numero ingresado no corresponde a ninguna opcion.");
                         System.out.println("Intente otra vez.");
@@ -339,7 +374,28 @@ public class AulaVirtualEP3 {
             }
         }
     }
+    
+    
+    
+    public static double promedioAlumno(ArrayList<Ramo> asignaturas){
+        double promedio = 0;
         
+        for (int i = 0; i < asignaturas.size(); i++) {
+            promedio += promedioRamo(asignaturas.get(i).getNotas());
+        }
+        
+        return promedio / asignaturas.size();
+    }
+    
+    public static double promedioRamo(ArrayList<Nota>notas){
+        double promedio = 0;
+        
+        for (int i = 0; i < notas.size(); i++) {
+            promedio += notas.get(i).getNota();
+        }
+        
+        return promedio / notas.size();
+    }
     //MENU DE ELIMINAR
     public static void subMenuCase3(int[] indicesAlumno){
         int opcion, idRamo;
