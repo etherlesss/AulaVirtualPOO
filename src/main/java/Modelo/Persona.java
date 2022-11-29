@@ -1,6 +1,6 @@
 package Modelo;
 
-public abstract class Persona {
+public abstract class Persona implements IntegranteAula{
     // ATRIBUTOS
     private String nombre;
     private String apellido;
@@ -62,7 +62,4 @@ public abstract class Persona {
     public void setContrasenya(String contrasenya) {
         this.contrasenya = contrasenya;
     }
-    
-    // METODOS
-    public abstract void mostrarDatos(int i);
 }
