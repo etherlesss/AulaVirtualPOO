@@ -56,6 +56,7 @@ public class Operaciones {
         System.out.println(""
             + "(1) - Imprimir datos\n"
             + "(2) - Mostrar alumnos con promedios mas bajos y altos por curso\n"
+            + "(3) - Mostrar las notas de los alumnos por aceptables e inaceptables\n"
             + "(0) - Volver");
         }
         else{

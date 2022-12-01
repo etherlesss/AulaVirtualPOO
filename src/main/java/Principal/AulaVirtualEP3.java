@@ -11,7 +11,9 @@ import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
+import java.util.Comparator;
 
 public class AulaVirtualEP3 {
     // AVANCE (datos) GENERAL(es) DEL COLEGIO
@@ -320,6 +322,36 @@ public class AulaVirtualEP3 {
                             System.out.println("Promedio mas alto:" + listaMayores.get(i) +" "+listaAlumnosMayores.get(i).getRut());
                         }
                         break;    
+                    //ver alumnos con notas entre 4.0 y 7.0
+                    case 3:
+                        ArrayList <Alumno> aceptable = new ArrayList();
+                        ArrayList<Double> notasAceptable = new ArrayList();
+                        ArrayList <Alumno> inaceptable = new ArrayList();
+                        ArrayList<Double> notasInaceptable = new ArrayList();
+                        
+                        for (int i = 0; i < alumnos.size(); i++) {
+                            actual = promedioAlumno(alumnos.get(i).getAsignaturas()); 
+                            if(actual >= 4.0){
+                                aceptable.add(alumnos.get(i));
+                                notasAceptable.add(actual);
+                            }
+                            else{
+                                inaceptable.add(alumnos.get(i));
+                                notasInaceptable.add(actual);
+                            }
+                        }
+
+                        System.out.println("Alumnos con promedio mayor a 4.0");
+                        for (int i = 0; i < aceptable.size(); i++) {
+                            System.out.println(aceptable.get(i) + " " + notasAceptable.get(i));
+                        }
+                        
+                        for (int i = 0; i < inaceptable.size(); i++) {
+                            System.out.println(inaceptable.get(i) + " " + notasInaceptable.get(i));
+                        }
+                        break;
+                    default:
+                        break;
                 }
                 opcion = operaciones.decisionMenuMuestra(Admin);
             }
@@ -389,7 +421,7 @@ public class AulaVirtualEP3 {
     
     public static double promedioRamo(ArrayList<Nota>notas){
         double promedio = 0;
-        
+        if(notas.size() == 0) return 0;
         for (int i = 0; i < notas.size(); i++) {
             promedio += notas.get(i).getNota();
         }
