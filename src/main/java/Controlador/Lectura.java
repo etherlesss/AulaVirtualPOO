@@ -8,8 +8,10 @@ import static Principal.AulaVirtualEP3.profesores;
 import static Principal.AulaVirtualEP3.ramos;
 import Modelo.Curso;
 import Modelo.Ramo;
+import Modelo.Nota;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Lectura {

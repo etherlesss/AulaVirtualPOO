@@ -371,7 +371,7 @@ public class AulaVirtualEP3 {
                                         contador++;
                                     }
                                 }
-                                System.out.println("");
+                                //System.out.println("");
                             }
                             
                             if (contador != 0) {
