@@ -7,6 +7,7 @@ import static Principal.AulaVirtualEP3.profesores;
 import static Principal.AulaVirtualEP3.ramos;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Asignacion {
@@ -61,7 +62,7 @@ public class Asignacion {
     
     public static void asignarNotasArchivo() throws FileNotFoundException{
         String file  = "src/test/java/in/notasAlumnos.csv";
-        int index;
+        int index, l = 0;
         try{
             File archivo = new File(file);
             System.out.println("Ruta: " +archivo.getAbsolutePath());
@@ -78,25 +79,19 @@ public class Asignacion {
                     nueva.setIdRamo(Integer.valueOf(datos[0]));
                     nueva.setNota(Double.valueOf(datos[i]));
                     index = getIndexAlumno(datos[2]);
-                    cursos.get(Integer.valueOf(datos[1])-1).getListaAlumnos().get(index).getAsignaturas().get(Integer.valueOf(datos[0])-1).getNotas().add(nueva);
-                }
-                
-                /*
-                for (int i = 0; i < alumnos.size(); i++) {
-                    String [] datos = entrada.next().split(";");
-                    if(alumnos.get(i).getRut().equals(datos[1])){
-                        for (int k = 2; k < 8; k++) {
-                            Nota nueva = new Nota();
-                            nueva.setIdRamo(Integer.valueOf(datos[0]));
-                            nueva.setNota(Double.valueOf(datos[k]));
-                            System.out.println(datos[k]);
-                            System.out.println(Integer.valueOf(datos[0])+" "+(k-1)+" "+i);
-                            alumnos.get(i).getAsignaturas().get(Integer.valueOf(datos[0])-1).getNotas().add(nueva);
-                            
-                        }
-                    }
+                    nueva.setIdAlumno(index);
+                    nueva.setIdCurso(Integer.valueOf(datos[1])-1);
+
+                    //System.out.print("Curso: "+Integer.valueOf(datos[1])+" ");
+                    //System.out.println(index);
                     
-                }*/
+                    cursos.get(Integer.valueOf(datos[1])-1).getListaAlumnos().get(index).getAsignaturas().get(Integer.valueOf(datos[0])-1).getNotas().add(nueva);
+                    
+                    //System.out.println("Nota agregada:"+cursos.get(Integer.valueOf(datos[1])-1).getListaAlumnos().get(index).getAsignaturas().get(Integer.valueOf(datos[0])-1).getNotas().get(l).getNota());
+                    //System.out.println("");
+                    l++;
+                    if(l==6) l = 0;
+                }
             }
             entrada.close();
         }catch(FileNotFoundException e){
