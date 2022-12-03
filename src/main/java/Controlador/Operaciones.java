@@ -76,7 +76,7 @@ public class Operaciones {
     
     public int decisionMenuEliminar(){
         System.out.println(""
-                + "(1) - Eliminar nota(s) de un ramo \n"
+                + "(1) - Eliminar nota(s) de un alumno\n"
                 + "(2) - Eliminar material(es) de un ramo\n "
                 + "(0) - Volver");
         System.out.print("Ingrese opcion: ");

@@ -1,5 +1,11 @@
 package Principal;
 
+import au.com.bytecode.opencsv.CSVWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+
 import Controlador.*;
 import Modelo.*;
 import Controlador.Operaciones;
@@ -186,11 +192,6 @@ public class AulaVirtualEP3 {
                                     Nota notaNueva = new Nota();
                                     notaNueva.crearDatos(idRamo,indicesAlumno[1],indicesAlumno[0]);
                                     cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(idRamo-1).getNotas().add(notaNueva);
-                                    /*for (int l = 0; l < cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().size(); l++) {
-                                        if (cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(l).getId() == idRamo) {
-                                            cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(l).getNotas().add(notaNueva);
-                                        }
-                                    }*/
                                 }
                                 System.out.println("Nota(s) añadidas con éxito.");
                                 flag = 0;
@@ -294,13 +295,17 @@ public class AulaVirtualEP3 {
                         }
                         break;    
                     case 2:
-                        double promedioRamo = 0, promedioTotal =0, menor = 0, idMenor = 0;
+                        double promedioRamo = 0, promedioTotal =0, menor = 0, mayor = 0;
                         ArrayList<Alumno> alumnosMenores = new ArrayList();
                         ArrayList<Double> notasMenores = new ArrayList(); 
+                        
+                        ArrayList<Alumno> alumnosMayores = new ArrayList();
+                        ArrayList<Double> notasMayores = new ArrayList();
                         
                         //por todos los cursos
                         for (int i = 0; i < cursos.size(); i++) {
                             Alumno alumnoMenor = new Alumno();
+                            Alumno alumnoMayor = new Alumno();
                             //por todos los alumnos
                             for (int j = 0; j < cursos.get(i).getListaAlumnos().size(); j++) {
                                 //por todas las asignaturas
@@ -310,13 +315,13 @@ public class AulaVirtualEP3 {
                                         if(cursos.get(i).getListaAlumnos().get(j).getAsignaturas().get(k).getNotas().get(l).getIdAlumno() == indicesAlumno[1]){
                                             if(cursos.get(i).getListaAlumnos().get(j).getAsignaturas().get(k).getNotas().get(l).getIdCurso() == cursos.get(i).getNivel()-1){
                                                 if(cursos.get(i).getListaAlumnos().get(j).getAsignaturas().get(k).getNotas().get(l).getIdRamo() == cursos.get(i).getListaAlumnos().get(j).getAsignaturas().get(k).getId()){
-                                                    System.out.println("NOTA: "+cursos.get(i).getListaAlumnos().get(j).getAsignaturas().get(k).getNotas().get(l).getNota());
+                                                    //System.out.println("NOTA: "+cursos.get(i).getListaAlumnos().get(j).getAsignaturas().get(k).getNotas().get(l).getNota());
                                                     promedioRamo += cursos.get(i).getListaAlumnos().get(j).getAsignaturas().get(k).getNotas().get(l).getNota();
                                                 }
                                             }
                                         }
                                     }
-                                    System.out.println("PROMEDIO RAMO: "+promedioRamo/8);
+                                    //System.out.println("PROMEDIO RAMO: "+promedioRamo/8);
                                     promedioTotal += promedioRamo/8;
                                     promedioRamo = 0;
                                 }
@@ -324,26 +329,101 @@ public class AulaVirtualEP3 {
                                 if(j == 0){
                                     
                                     menor = promedioTotal;
+                                    mayor = promedioTotal;
                                     alumnoMenor =cursos.get(i).getListaAlumnos().get(j);
+                                    alumnoMayor = cursos.get(i).getListaAlumnos().get(i);
                                 }
                                 
                                 if(promedioTotal < menor){
                                     menor = promedioTotal;
                                     alumnoMenor = cursos.get(i).getListaAlumnos().get(j);
                                 }
+                                if(promedioTotal > mayor){
+                                    mayor = promedioTotal;
+                                    alumnoMayor = cursos.get(i).getListaAlumnos().get(i);
+                                }
                             }
                             alumnosMenores.add(alumnoMenor);
                             notasMenores.add(menor);
+                            alumnosMayores.add(alumnoMayor);
+                            notasMayores.add(mayor);
                             promedioTotal = 0;
                         }
                         System.out.println("Alumnos con el menor promedio de todos los cursos: ");
                         for (int i = 0; i < alumnosMenores.size(); i++) {
                             System.out.println(alumnosMenores.get(i).getRut() + " " + notasMenores.get(i));
                         }
+                        System.out.println("");
+                        System.out.println("Alumnos con el mayor promedio de todos los cursos: ");
+                        for (int i = 0; i < alumnosMayores.size(); i++) {
+                            System.out.println(alumnosMayores.get(i).getRut() + " " + notasMayores.get(i));
+                        }
                         
                         break;    
                     //ver alumnos con notas entre 4.0 y 7.0
                     case 3:
+                        promedioRamo = 0;
+                        promedioTotal = 0;
+                        ArrayList<Alumno> alumnosAceptables = new ArrayList();
+                        ArrayList<Double> notasAceptables = new ArrayList();
+                        ArrayList<Alumno> alumnosInaceptables = new ArrayList();
+                        ArrayList<Double> notasInaceptables = new ArrayList();
+                        ArrayList<Alumno> alumnosBuenos = new ArrayList();
+                        ArrayList<Double> notasBuenas = new ArrayList();
+                        for (int i = 0; i < cursos.size(); i++) {
+                            Alumno alumnoAceptable = new Alumno();
+                            //por todos los alumnos
+                            for (int j = 0; j < cursos.get(i).getListaAlumnos().size(); j++) {
+                                //por todas las asignaturas
+                                for (int k = 0; k < cursos.get(i).getListaAlumnos().get(j).getAsignaturas().size(); k++) {
+                                    //por todas las notas
+                                    for (int l = 0; l < cursos.get(i).getListaAlumnos().get(j).getAsignaturas().get(k).getNotas().size(); l++) {
+                                        if(cursos.get(i).getListaAlumnos().get(j).getAsignaturas().get(k).getNotas().get(l).getIdAlumno() == indicesAlumno[1]){
+                                            if(cursos.get(i).getListaAlumnos().get(j).getAsignaturas().get(k).getNotas().get(l).getIdCurso() == cursos.get(i).getNivel()-1){
+                                                if(cursos.get(i).getListaAlumnos().get(j).getAsignaturas().get(k).getNotas().get(l).getIdRamo() == cursos.get(i).getListaAlumnos().get(j).getAsignaturas().get(k).getId()){
+                                                    //System.out.println("NOTA: "+cursos.get(i).getListaAlumnos().get(j).getAsignaturas().get(k).getNotas().get(l).getNota());
+                                                    promedioRamo += cursos.get(i).getListaAlumnos().get(j).getAsignaturas().get(k).getNotas().get(l).getNota();
+                                                }
+                                            }
+                                        }
+                                    }
+                                    //System.out.println("PROMEDIO RAMO: "+promedioRamo/8);
+                                    promedioTotal += promedioRamo/8;
+                                    promedioRamo = 0;
+                                }
+                                
+                                promedioTotal = promedioTotal/8;
+                                
+                                //compraraciones
+                                if(promedioTotal > 4.0 && promedioTotal < 5.0){
+                                    notasAceptables.add(promedioTotal);
+                                    alumnosAceptables.add(cursos.get(i).getListaAlumnos().get(j));
+                                }
+                                if(promedioTotal < 4.0){
+                                    notasInaceptables.add(promedioTotal);
+                                    alumnosInaceptables.add(cursos.get(i).getListaAlumnos().get(j));
+                                }
+                                if(promedioTotal > 5.0){
+                                    notasBuenas.add(promedioTotal);
+                                    alumnosBuenos.add(cursos.get(i).getListaAlumnos().get(j));
+                                }
+                            }
+                        }
+                        
+                        System.out.println("Alumnos con promedio general mayor a 5.0: ");
+                        for (int i = 0; i < notasBuenas.size(); i++) {
+                            System.out.println(alumnosBuenos.get(i).getRut() + " " + notasBuenas.get(i));
+                        }
+                        System.out.println("");
+                        System.out.println("Alumnos con promedio general mayor a 4.0 y menor a 5.0: ");
+                        for (int i = 0; i < notasAceptables.size(); i++) {
+                            System.out.println(alumnosAceptables.get(i).getRut() + " " + notasAceptables.get(i));
+                        }
+                        System.out.println("");
+                        System.out.println("Alumnos con promedio general menor a 4.0: ");
+                        for (int i = 0; i < notasInaceptables.size(); i++) {
+                            System.out.println(alumnosInaceptables.get(i).getRut() + " " + notasInaceptables.get(i));
+                        }
                         
                         break;
                     default:
@@ -421,9 +501,14 @@ public class AulaVirtualEP3 {
                 case 1:
                     //Elimminar nota             
                     int opcionNota;
+                    System.out.println("Ingrese rut: ");
+                    String rutBuscado = Entrada.next();
+                    
+                    int[] indicesAlumnoBuscado = new int[2];
+                    indicesAlumnoBuscado = getIndiceAlumno(rutBuscado);
+                    
                     operaciones.ramosDisponibles();
-                    
-                    
+
                     System.out.print("Ingrese el ramo: ");
                     idRamo = operaciones.validarIdIngresado();
                     while(idRamo == 0){
@@ -433,10 +518,18 @@ public class AulaVirtualEP3 {
                     for (int j = 0; j < ramos.size(); j++){
                         if(ramos.get(j).getId() == idRamo){
                             System.out.println("Notas de " + ramos.get(j).getNombre() + ": ");
-                            for (int k = 0; k < cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().size(); k++) {
-                                for (int i = 0; i < cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getNotas().size(); i++) {
-                                    if (cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getId() == ramos.get(j).getId()) {
-                                        System.out.println("[ "+ i +" ] " + cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getNotas().get(i).getNota());
+                            for (int l = 0; l < cursos.size(); l++) {
+                                for (int m = 0; m < cursos.get(l).getListaAlumnos().size(); m++) {
+                                    if(rutBuscado.equals(cursos.get(l).getListaAlumnos().get(m).getRut())){
+                                        for (int i = 0; i < cursos.get(l).getListaAlumnos().get(m).getAsignaturas().get(j).getNotas().size(); i++) {
+                                            if (cursos.get(indicesAlumnoBuscado[0]).getListaAlumnos().get(indicesAlumnoBuscado[1]).getAsignaturas().get(j).getNotas().get(i).getIdRamo() == ramos.get(j).getId()) {
+                                                if(cursos.get(indicesAlumnoBuscado[0]).getListaAlumnos().get(indicesAlumnoBuscado[1]).getAsignaturas().get(j).getNotas().get(i).getIdAlumno()== indicesAlumno[1]){
+                                                    if(cursos.get(indicesAlumnoBuscado[0]).getListaAlumnos().get(indicesAlumnoBuscado[1]).getAsignaturas().get(j).getNotas().get(i).getIdCurso() == cursos.get(indicesAlumnoBuscado[0]).getNivel()-1){
+                                                        System.out.println("[ "+ i +" ] " + cursos.get(indicesAlumnoBuscado[0]).getListaAlumnos().get(indicesAlumnoBuscado[1]).getAsignaturas().get(j).getNotas().get(i).getNota());
+                                                    }     
+                                                }   
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -446,12 +539,22 @@ public class AulaVirtualEP3 {
                     try{
                     for (int j = 0; j < ramos.size(); j++){
                         if(ramos.get(j).getId() == idRamo){
-                            for (int k = 0; k < cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().size(); k++) {
-                                if (cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getId() == ramos.get(j).getId()) {
-                                    cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getNotas().remove(opcionNota);
-                                    System.out.println("Operación realizada correctamente.");
-                                    j = ramos.size();
-                                    break;
+                            System.out.println("Notas de " + ramos.get(j).getNombre() + ": ");
+                            for (int l = 0; l < cursos.size(); l++) {
+                                for (int m = 0; m < cursos.get(l).getListaAlumnos().size(); m++) {
+                                    if(rutBuscado.equals(cursos.get(l).getListaAlumnos().get(m).getRut())){
+                                        for (int i = 0; i < cursos.get(l).getListaAlumnos().get(m).getAsignaturas().get(j).getNotas().size(); i++) {
+                                            if (cursos.get(indicesAlumnoBuscado[0]).getListaAlumnos().get(indicesAlumnoBuscado[1]).getAsignaturas().get(j).getNotas().get(i).getIdRamo() == ramos.get(j).getId()) {
+                                                if(cursos.get(indicesAlumnoBuscado[0]).getListaAlumnos().get(indicesAlumnoBuscado[1]).getAsignaturas().get(j).getNotas().get(i).getIdAlumno()== indicesAlumno[1]){
+                                                    if(cursos.get(indicesAlumnoBuscado[0]).getListaAlumnos().get(indicesAlumnoBuscado[1]).getAsignaturas().get(j).getNotas().get(i).getIdCurso() == cursos.get(indicesAlumnoBuscado[0]).getNivel()-1){
+                                                        if(opcionNota == i){
+                                                            cursos.get(indicesAlumnoBuscado[0]).getListaAlumnos().get(indicesAlumnoBuscado[1]).getAsignaturas().get(j).getNotas().remove(i);
+                                                        }
+                                                    }     
+                                                }   
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -567,6 +670,7 @@ public class AulaVirtualEP3 {
     /*
         EXPORTACION DE DATOS
     */
+    /*
     public static void exportarNotas(int[] indicesAlumno) {
         try {
             PrintWriter writer = new PrintWriter("src/test/java/out/InformeNotas1.txt", "UTF-8");
@@ -602,7 +706,51 @@ public class AulaVirtualEP3 {
             e.printStackTrace();
         }
     }
-    
+    */
+    public static void exportarNotas(int[] indicesAlumno) {
+        double promedio = 0;
+        int contador = 0;
+        File file = new File("src/test/java/out/InformeNotas1.csv");
+        
+        try {
+            FileWriter outputfile = new FileWriter(file);
+            CSVWriter writer = new CSVWriter(outputfile);
+            String [] header = {"Notas alumno: "};
+            writer.writeNext(header);
+            ArrayList<String> notas = new ArrayList();
+            
+            System.out.println("Lista de notas ordenadas por ramo: ");  
+            
+            for (int j = 0; j < ramos.size(); j++) {
+                writer.writeNext("Notas de " + ramos.get(j).getNombre() + ": ");
+                for (int k = 0; k < cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().size(); k++) {
+                    for (int i = 0; i < cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getNotas().size(); i++) {
+                        if (cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getNotas().get(i).getIdRamo() == ramos.get(j).getId()) {
+                            if(cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getNotas().get(i).getIdAlumno()== indicesAlumno[1]){
+                                if(cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getNotas().get(i).getIdCurso() == cursos.get(indicesAlumno[0]).getNivel()-1){
+                                    promedio += cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getNotas().get(i).getNota();
+                                    notas.add(Double.toString(cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getNotas().get(i).getNota()));
+                                    writer.writeNext((cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(k).getNotas().get(i).getNota())+"");
+                                    contador++;
+                                }     
+                            }   
+                        }
+                    }
+                }   
+                if (contador != 0) {
+                    writer.writeNext("El promedio de " + ramos.get(j).getNombre()
+                            + " es " + promedio / contador);
+                } else {
+                    writer.writeNext("Este ramo no tiene notas.");
+                }    
+                promedio = 0;
+                contador = 0;
+            }
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /*
         VISUALIZACION DE DATOS - PARA MANTENIMIENTO
     */
