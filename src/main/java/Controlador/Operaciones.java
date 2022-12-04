@@ -6,6 +6,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.text.ParseException;
+import javax.swing.JOptionPane;
 
 public class Operaciones {
     public Scanner entrada = new Scanner(System.in);
@@ -120,7 +121,7 @@ public class Operaciones {
     }
     
     public void ramosDisponibles(){
-        System.out.println("" 
+        JOptionPane.showMessageDialog(null,"" 
             + "1- Historia\n" 
             + "2- Matematicas\n" 
             + "3- Lenguaje\n" 
@@ -132,30 +133,37 @@ public class Operaciones {
     }
     
     public double validarNotaIngresada(){
-        String cadena = entrada.next();
+        String cadena = JOptionPane.showInputDialog("Ingrese una nota");
+        double nota;
         if (cadena.matches("[0-9.]*")) {
-            return Double.valueOf(cadena);
+            System.out.println(cadena);
+            nota = Double.valueOf(cadena);
+            System.out.print(nota);
+            return nota;
         } else {
-            System.out.println("Dato invalido.\n");
+            JOptionPane.showMessageDialog(null, "Dato invalido");
+            //System.out.println("Dato invalido.\n");
         }
         return 0;
     }
     public int validarNumeroIngresado(){
-        String cadena = entrada.next();
+        String cadena = JOptionPane.showInputDialog("Ingrese cantidad de notas a agregar");
         if(cadena.matches("[1-9]*")){
             return Integer.valueOf(cadena);
         }
         else{
-            System.out.println("Dato inválido.\n");
+            JOptionPane.showMessageDialog(null, "Dato invalido");
+            //System.out.println("Dato inválido.\n");
         }
         return 0;
     }
     public int validarIdIngresado(){
-        String cadena = entrada.next();
+        String cadena = JOptionPane.showInputDialog("Ingrese un id de ramo");
         if (cadena.matches("[1-8]*")) {
             return Integer.valueOf(cadena);
         } else {
-            System.out.println("Dato invalido.\n");
+            JOptionPane.showMessageDialog(null, "Dato invalido");
+            //System.out.println("Dato invalido.\n");
         }
         return 0;
     }
@@ -165,31 +173,36 @@ public class Operaciones {
         if (cadena.matches("[1-4]*")) {
             return Integer.valueOf(cadena);
         } else {
-            System.out.println("Dato invalido.\n");
+            JOptionPane.showMessageDialog(null, "Dato invalido");
+            //System.out.println("Dato invalido.\n");
         }
         return 0;
     }
     
     public Date validarFechaIngresada(){
-        String cadena = entrada.next();
+        String cadena;
+        cadena = JOptionPane.showInputDialog(null,"Ingrese fecha de entrega (DD/MM/YYYY): ");
         DateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
         Date salida;
         fecha.setLenient(false);
         try {
             salida = fecha.parse(cadena);
         } catch (ParseException e){
-            System.out.println("Dato invalido.\n");
+            JOptionPane.showMessageDialog(null, "Dato invalido");
+            //System.out.println("Dato invalido.\n");
             return null;
         }
         return salida;
     }
     
     public String validarMaterialesIngresados(){
-        String cadena = entrada.useDelimiter("\n").next();
+        String cadena;// = entrada.useDelimiter("\n").next();
+        cadena = JOptionPane.showInputDialog(null, "Ingrese materiales:");
         if (cadena.matches("[A-Za-z, ]*")) {
             return cadena;
         } else {
-            System.out.println("Dato invalido.\n");
+            JOptionPane.showMessageDialog(null, "Dato invalido");
+            //System.out.println("Dato invalido.\n");
         }
         return null;
     }
@@ -199,7 +212,8 @@ public class Operaciones {
         if (cadena.matches("[A-Za-z, ]*")) {
             return cadena;
         } else {
-            System.out.println("Dato invalido.\n");
+            JOptionPane.showMessageDialog(null, "Dato invalido");
+            //System.out.println("Dato invalido.\n");
         }
         return null;
     }

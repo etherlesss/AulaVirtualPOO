@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 import java.util.Comparator;
+import javax.swing.JOptionPane;
 
 public class AulaVirtualEP3 {
     // AVANCE (datos) GENERAL(es) DEL COLEGIO
@@ -64,6 +65,7 @@ public class AulaVirtualEP3 {
     /*
         MENU
     */
+    /*
     public static void menu(int Admin, String rut){
         int opcion;
         int[] indicesAlumno = new int[2];
@@ -84,6 +86,7 @@ public class AulaVirtualEP3 {
         
         if(Admin == 1){
             opcion = operaciones.decisionMenuPrincipal(Admin);
+            //llamar ventana profe
             while (opcion != 0) {
                 switch (opcion) {
                     //Agregar Elemento(s)
@@ -128,7 +131,7 @@ public class AulaVirtualEP3 {
             }
         }
     }
-    
+    */
     public static int[] getIndiceAlumno(String rutBuscado) {
         int[] indicesAlumno = new int[2];
         int i, j;
@@ -147,9 +150,8 @@ public class AulaVirtualEP3 {
     public static int[] getIndiceAlumnoAdmin() {
         int[] indicesAlumno = new int[2];
         int i, j;
-          
-        System.out.print("Ingrese el rut del alumno (con puntos y guion): ");
-        String rutBuscado = Entrada.next();
+        
+        String rutBuscado = JOptionPane.showInputDialog("Ingrese el rut del alumno (con puntos y guion):");
         
         for (i = 0; i < cursos.size(); i++) {
             for (j = 0; j < cursos.get(i).getListaAlumnos().size(); j++) {
@@ -163,10 +165,10 @@ public class AulaVirtualEP3 {
         return null;
     }
     
-    public static void subMenuCase1(){
+    public static void subMenuCase1(int clave){
         int opcion, idRamo, flag = 1;
         int[] indicesAlumno = new int[2];
-        opcion = operaciones.decisionMenuAgregado();
+        opcion = clave;//operaciones.decisionMenuAgregado();
         
         while (opcion != 0) {
             switch (opcion) {
@@ -175,15 +177,30 @@ public class AulaVirtualEP3 {
                         indicesAlumno = getIndiceAlumnoAdmin();
                         while(flag == 1){
                             if(indicesAlumno != null){
-                                operaciones.ramosDisponibles();
-                                System.out.print("Ingrese el id del ramo: ");
+                                //operaciones.ramosDisponibles();
+                                JOptionPane.showMessageDialog(null, "id de ramos:\n"
+                                        + "\"1- Historia\" \n" 
+                                        + "\"2- Matematicas\" \n" 
+                                        + "\"3- Lenguaje\" \n" 
+                                        + "\"4- Ciencias\" \n" 
+                                        + "\"5- Ingles\" \n" 
+                                        + "\"6- Educacion_Fisica\" \n" 
+                                        + "\"7- Tecnologia\" \n"
+                                        + "\"8- Religion\");");
+                                //System.out.print("Ingrese el id del ramo: ");
+                                String Dato;// = JOptionPane.showInputDialog("Ingrese el id del ramo:");
+                                //idRamo = Integer.valueOf(Dato);
                                 idRamo = operaciones.validarIdIngresado();
                                 while (idRamo == 0){
-                                    System.out.print("Vuelva a ingresar el id del ramo: ");
+                                    //System.out.print("Vuelva a ingresar el id del ramo: ");
+                                    //Dato = JOptionPane.showInputDialog("Vuelva a ingresar el id del ramo:");
+                                    //idRamo = Integer.valueOf(Dato);
                                     idRamo = operaciones.validarIdIngresado();
                                 }
                                         
-                                System.out.print("Ingrese cantidad de notas a agregar: ");
+                                //System.out.print("Ingrese cantidad de notas a agregar: ");
+                                //Dato = JOptionPane.showInputDialog("Ingrese cantidad de notas a agregar");
+                                //cantidad = Integer.valueOf(Dato);
                                 cantidad = operaciones.validarNumeroIngresado();
                                 while(cantidad == 0){
                                     cantidad = operaciones.validarNumeroIngresado();
@@ -193,21 +210,23 @@ public class AulaVirtualEP3 {
                                     notaNueva.crearDatos(idRamo,indicesAlumno[1],indicesAlumno[0]);
                                     cursos.get(indicesAlumno[0]).getListaAlumnos().get(indicesAlumno[1]).getAsignaturas().get(idRamo-1).getNotas().add(notaNueva);
                                 }
-                                System.out.println("Nota(s) añadidas con éxito.");
+                                JOptionPane.showMessageDialog(null, "Nota(s) añadidas con éxito");
+                                //System.out.println("Nota(s) añadidas con éxito.");
                                 flag = 0;
                             }
                             else{
-                                System.out.print("Rut inválido\n");
+                                JOptionPane.showMessageDialog(null, "Rut invalido");
+                                //System.out.print("Rut inválido\n");
                                 indicesAlumno = getIndiceAlumnoAdmin();
                             }
                         }
                     break;
                 case 2:
                     operaciones.ramosDisponibles();
-                    System.out.print("Ingrese el id del ramo: ");
+                    //System.out.print("Ingrese el id del ramo: ");
                     idRamo = operaciones.validarIdIngresado();
                     while (idRamo == 0){
-                        System.out.print("Vuelva a ingresar el id del ramo: ");
+                        //System.out.print("Vuelva a ingresar el id del ramo: ");
                         idRamo = operaciones.validarIdIngresado();
                     }
 
@@ -219,7 +238,7 @@ public class AulaVirtualEP3 {
                             ramos.get(i).getMateriales().add(materialNuevo);
                         }
                     }
-                    System.out.println("Material agregado con exito.\n");
+                    //System.out.println("Material agregado con exito.\n");
                     break;
                     
                 default:
@@ -227,21 +246,20 @@ public class AulaVirtualEP3 {
                     System.out.println("Intente otra vez.");
                     break;
             }
-            opcion = operaciones.decisionMenuAgregado();
+            opcion = 0;//operaciones.decisionMenuAgregado();
         }
     }
 
     // MENU DE IMPRESION DE DATOS (MOSTRAR)
-    public static void subMenuCase2(int[] indicesAlumno, int Admin) {
+    public static void subMenuCase2(int[] indicesAlumno, int Admin, int clave, int claveDatos) {
         int opcion;
-        
-        opcion = operaciones.decisionMenuMuestra(Admin);
+        opcion = clave; //operaciones.decisionMenuMuestra(Admin);
         
         while (opcion != 0) {
             if(Admin == 1){
                 switch (opcion) {
                     case 1:
-                        opcion = operaciones.decisionMenuSesion(Admin);
+                        opcion = claveDatos;//operaciones.decisionMenuSesion(Admin);
                         while (opcion == 0) {
                             System.out.println(""
                                 + "Numero no corresponde a ninguna opcion\n"
@@ -252,8 +270,8 @@ public class AulaVirtualEP3 {
                             profesores.get(indicesAlumno[0]).mostrarDatos(indicesAlumno[0]);
                         }
                         if (opcion == 2) {
-                            System.out.println("Ingrese rut: ");
-                            String rutBuscado = Entrada.next();
+                            //System.out.println("Ingrese rut: ");
+                            String rutBuscado = JOptionPane.showInputDialog("Ingrese el rut del alumno a buscar");//Entrada.next();
                             
                             for (int i = 0; i < cursos.size(); i++) {
                                 for (int j = 0; j < cursos.get(i).getListaAlumnos().size(); j++) {
@@ -280,7 +298,7 @@ public class AulaVirtualEP3 {
                                             }
                                             System.out.println("");
                                             if (contador != 0) {
-                                            System.out.println("El promedio de " + ramos.get(j).getNombre()
+                                            System.out.println("El promedio de " + ramos.get(l).getNombre()
                                                               + " es " + promedio / contador);
                                             }
                                             else {
@@ -429,7 +447,7 @@ public class AulaVirtualEP3 {
                     default:
                         break;
                 }
-                opcion = operaciones.decisionMenuMuestra(Admin);
+                opcion = 0;//operaciones.decisionMenuMuestra(Admin);
             }
             else{
                 switch (opcion) {
@@ -486,7 +504,7 @@ public class AulaVirtualEP3 {
                         System.out.println("Intente otra vez.");
                         break;
                 }
-                opcion = operaciones.decisionMenuMuestra(Admin);
+                opcion = 0;//operaciones.decisionMenuMuestra(Admin);
             }
         }
     }

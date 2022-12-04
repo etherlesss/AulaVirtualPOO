@@ -1,6 +1,7 @@
 package Modelo;
 
 import Controlador.Operaciones;
+import javax.swing.JOptionPane;
 
 public class Nota {
     // ATRIBUTOS
@@ -70,13 +71,14 @@ public class Nota {
     public void crearDatos(int idRamo, int idAlumno, int idCurso) {
         double notaIngresada = 0;
         
-        System.out.println("Ingrese las notas: ");
+        //System.out.println("Ingrese las notas: ");
         this.idRamo = idRamo;
         this.idCurso = idCurso;
         this.idAlumno = idAlumno;
         while (notaIngresada == 0) {
-            System.out.print("Nota: ");
+            //System.out.print("Nota: ");
             notaIngresada = operaciones.validarNotaIngresada();
+            System.out.println(notaIngresada);
         }
         this.nota = notaIngresada;
     }

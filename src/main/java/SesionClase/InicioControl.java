@@ -3,15 +3,20 @@ package SesionClase;
 import SesionFrame.VerInicio;
 import Principal.AulaVirtualEP3;
 import Modelo.*;
+import SesionFrame.ventanaAlumno;
+import SesionFrame.ventanaProfesor;
 import java.util.ArrayList;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 public class InicioControl implements ActionListener{
     // ATRIBUTOS
     private VerInicio ventana;
+    //private ventanaAlumno cuadroAlumno = new ventanaAlumno();
     //CONSTRUCTOR
     public InicioControl(VerInicio vision){
         this.ventana = vision;
@@ -40,10 +45,13 @@ public class InicioControl implements ActionListener{
                         + obtenerUsuarioProfesor(AulaVirtualEP3.profesores, Usuario).getApellido());
                 
                 /* LLAMAR MENU CON MAYORES PERMISOS: PARA AGREGAR NOTAS, MODIFICAR, ETC... */
-                
+                ventanaProfesor cuadroProfesor = new ventanaProfesor();
+                new VentanaProfesorControl(cuadroProfesor,Usuario);
+                cuadroProfesor.setLocationRelativeTo(null);
+                cuadroProfesor.setVisible(true);
                 ventana.setVisible(false);
-                AulaVirtualEP3.menu(1, Usuario);
-                System.exit(0);
+                //AulaVirtualEP3.menu(1, Usuario);
+                //System.exit(0);
             }
             else if(buscarPermisoAlumno(AulaVirtualEP3.alumnos, Usuario, Contrasenya) == true){
                 mostrarMensaje("Bienvenido@, "
@@ -54,9 +62,13 @@ public class InicioControl implements ActionListener{
                    CABE DESTACAR QUE NO ES NECESARIO VOLVER A PREGUNTAR POR EL RUT
                    DEL ALUMNO, YA QUE LOS DATOS LOS OBTIENE DE ESTE INICIO DE SESION. */
                 
-                ventana.setVisible(false);
-                AulaVirtualEP3.menu(0, Usuario);
-                System.exit(0);
+                //ventana.setVisible(false);
+                //AulaVirtualEP3.menu(0, Usuario);
+                ventanaAlumno cuadroAlumno = new ventanaAlumno();
+                new VentanaAlumnoControl(cuadroAlumno,Usuario);
+                cuadroAlumno.setLocationRelativeTo(null);
+                cuadroAlumno.setVisible(true);
+                ventana.dispose();
             }
             else{
                 mostrarMensajeError("Datos ingresasdos son incorrectos!");
