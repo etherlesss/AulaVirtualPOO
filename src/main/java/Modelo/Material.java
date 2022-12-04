@@ -2,6 +2,7 @@ package Modelo;
 
 import Controlador.Operaciones;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class Material {
     // ATRIBUTOS
@@ -51,17 +52,17 @@ public class Material {
         String materiales = null;
         Date fecha = null;
         
-        System.out.println("Ingrese material(es), " 
+        JOptionPane.showMessageDialog(null,"Ingrese material(es), " 
                 +   "puede usar comillas para ingresar multiples materiales: ");
         while (materiales == null) {
-            System.out.print("Ingrese materiales: ");
+            //System.out.print("Ingrese materiales: ");
             materiales = operaciones.validarMaterialesIngresados();
         }
         this.nombre = materiales;
         
-        System.out.println("Ingrese fecha de entrega (DD/MM/YYYY): ");
+        //JOptionPane.showMessageDialog(null,"Ingrese fecha de entrega (DD/MM/YYYY): ");
         while (fecha == null) {
-            System.out.print("Ingrese fecha de entrega: ");
+            //System.out.print("Ingrese fecha de entrega: ");
             fecha = operaciones.validarFechaIngresada();
         }
         this.fechaEntrega = fecha;
