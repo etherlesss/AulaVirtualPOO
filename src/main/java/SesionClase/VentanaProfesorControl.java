@@ -50,8 +50,8 @@ public class VentanaProfesorControl implements ActionListener{
             AulaVirtualEP3.subMenuCase1(2);
             mostrarMensaje("Material agregado con exito");
         }else if(e.getSource()==ventana.getBtnCambiarNota()){
-            mostrarMensaje("deberia cambiar una nota ");
             AulaVirtualEP3.subMenuCase4(1);
+            mostrarMensaje("Resultado en terminal");
         }else if(e.getSource()==ventana.getBtnEliminarMaterial()){
             //insertar codigo para eliminar material
             AulaVirtualEP3.subMenuCase3(indiceAlumno, 2);

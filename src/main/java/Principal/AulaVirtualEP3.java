@@ -580,7 +580,7 @@ public class AulaVirtualEP3 {
                     }
                     }
                     catch(Exception e){
-                        JOptionPane.showMessageDialog(null, "Hubo un error en la operacion", "Error", JOptionPane.ERROR_MESSAGE);
+                        //JOptionPane.showMessageDialog(null, "Hubo un error en la operacion", "Error", JOptionPane.ERROR_MESSAGE);
                         //System.out.println("Hubo un error en la operación.");
                     }
                     
