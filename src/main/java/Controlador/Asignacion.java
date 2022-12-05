@@ -81,14 +81,7 @@ public class Asignacion {
                     index = getIndexAlumno(datos[2]);
                     nueva.setIdAlumno(index);
                     nueva.setIdCurso(Integer.valueOf(datos[1])-1);
-
-                    //System.out.print("Curso: "+Integer.valueOf(datos[1])+" ");
-                    //System.out.println(index);
-                    
                     cursos.get(Integer.valueOf(datos[1])-1).getListaAlumnos().get(index).getAsignaturas().get(Integer.valueOf(datos[0])-1).getNotas().add(nueva);
-                    
-                    //System.out.println("Nota agregada:"+cursos.get(Integer.valueOf(datos[1])-1).getListaAlumnos().get(index).getAsignaturas().get(Integer.valueOf(datos[0])-1).getNotas().get(l).getNota());
-                    //System.out.println("");
                     l++;
                     if(l==6) l = 0;
                 }
