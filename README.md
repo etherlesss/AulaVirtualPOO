@@ -66,6 +66,7 @@ Haciendo inicio de sesión como alumno, tenemos las funciones de bajo privilegio
 <details>
   <summary>Ver materiales</summary>
   La función ver materiales nos permite ver los materiales que debe traer un alumno en sus distintos ramos.
+</details>
 
 <details>
   <summary>Exportar notas</summary>
