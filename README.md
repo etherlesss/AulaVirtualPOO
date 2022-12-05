@@ -17,30 +17,64 @@ Una vez estando la sesión iniciada, se mostrará un mensaje de retroalimentaci�
 Haciendo inicio de sesión como profesor, tenemos las funciones de alto privilegio, donde se cada opción seleccionada en el menú realiza distintas acciones:
 
 <details>
-  <summary>Agregar elementos</summary>
-  La función agregar elementos abre otro sub-menú interactivo, donde podemos agregar notas a un alumno 'x' en un ramo o agregarle materiales para que este traiga una específica fecha.
+  <summary>Ver datos</summary>
+  La opción ver datos nos permite mostrar los datos del usuario logueado.
 </details>
 
 <details>
-  <summary>Mostrar elementos</summary>
-  La función mostrar datos abre un sub-menú interactivo donde podemos elegir imprimir datos, dentro de esta opción, podemos mostrar datos de la sesión, o mostrar datos de un alumno, buscando por su RUT.
+  <summary>Ver datos de alumno</summary>
+  La opción ver datos de alumno nos permite mostrar los datos de un alumno, buscándolo en base al RUT.
 </details>
 
 <details>
-  <summary>Eliminar elementos</summary>
-  La función eliminar elementos, realiza lo opuesto a agregar elementos, cualquier opción seleccionada imprimirá las listas de lo que tenga para eliminar, simplemente basta con seleccionar el ítem de la lista a eliminar y se realizará la operación.
+  <summary>Alumnos con promedio mas bajo y alto</summary>
+  La opción nos permite mostrar por terminal los alumnos que tienen el promedio más bajo y más alto entre todos los cursos.
 </details>
 
 <details>
-  <summary>Modificar elementos</summary>
-  La función modificar elementos nos permite modificar una nota de un alumno, buscando por su rut. Una vez ingresado el RUT del alumno a modificar, nos pedirá el ramo y nos pedirá la nota que queremos reemplazar dentro de la lista.
+  <summary>Notas alumno por más y menos aceptable</summary>
+  La opcion nos permite mostrar por terminal los alumnos con promedio general mayor a 4.0 y menor a 5.0 (aceptable) y los alumnos con promedio inferior a 4.0 (inaceptable).
+</details>
+
+<details>
+  <summary>Cambiar nota</summary>
+  La opción nos permite cambiar la nota de un alumno, primero buscandolo por el RUT, después nos mostrará una lista de los ramos en los cuales podemos cambiar una nota y luego nos mostrara por terminal las notas que podemos reemplazar, a lo que deberemos ingresar un valor entre el intervalo que deje.
+</details>
+
+<details>
+  <summary>Agregar nota</summary>
+  La opción nos permite agregar una nota a un alumno, primero buscandolo por el RUT, después nos mostrará una lista de los ramos en los cuales podemos cambiar una nota y luego deberemos ingresar la cantidad de notas a agregar y posteriormente las notas que queramos.
+</details>
+
+<details>
+  <summary>Agregar material</summary>
+  La opción nos permite agregar un material a un curso, para que los alumnos traigan en un dia específico.
+</details>
+
+<details>
+  <summary>Eliminar material</summary>
+  La opción nos permite eliminar un material de un curso.
+</details>
+
+<details>
+  <summary>Eliminar nota</summary>
+  La opción nos permite eliminar una nota de algun alumno primero buscandolo por el RUT, después nos mostrará una lista de los ramos en los cuales podemos eliminar una nota y luego nos mostrara por terminal las notas que podemos eliminar, a lo que deberemos ingresar un valor entre el intervalo que deje.
 </details>
 
 Haciendo inicio de sesión como alumno, tenemos las funciones de bajo privilegio, donde se cada opción seleccionada en el menú realiza distintas acciones (aunque todas son del mismo tipo):
 
 <details>
-  <summary>Mostrar elementos</summary>
-  La función mostrar datos abre un sub-menú interactivo donde podemos elegir imprimir datos, dentro de esta opción, podemos mostrar el avance de notas del alumno, los materiales que el profesor les ha asignado, y podemos exportar su avance de notas en un archivo .txt que estará disponivle en la ruta: .\src\test\java\out.
+  <summary>Ver materiales</summary>
+  La función ver materiales nos permite ver los materiales que debe traer un alumno en sus distintos ramos.
+
+<details>
+  <summary>Exportar notas</summary>
+  La función exportar notas exportará el avance de notas del alumno en un archivo .csv que estará disponible en la ruta: .\src\test\java\out.
+</details>
+
+<details>
+  <summary>Mostrar notas</summary>
+  La función mostrar notas nos mostrará las notas del alumno en la terminal.
 </details>
 
 Todas las interacciones poseen indicaciones sobre que operación realizar, por lo que no necesitan una profundización mayor.
